@@ -1,0 +1,110 @@
+/* ────────────────
+   1. カスタムプロパティ（CSS変数）
+───────────────── */
+:root {
+    /* カラーパレット */
+    --brand-primary: #6B4F4F;   /* メインカラー */
+    --brand-accent:  #D9B08C;   /* アクセントカラー */
+    --text-color:    #333;      /* テキスト色 */
+    --bg-light:      #FAF8F5;   /* 背景サブカラー */
+  
+    /* タイポグラフィ */
+    --font-base:     "Helvetica Neue", Arial, sans-serif;
+    --font-heading:  "Merriweather", serif;
+  
+    /* スペーシング */
+    --spacing-unit:  8px;
+  }
+  
+  /* ────────────────
+     2. 全体リセット＆ベーススタイル
+  ───────────────── */
+  body {
+    font-family: var(--font-base);
+    color: var(--text-color);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    color: var(--brand-primary);
+    margin-top: calc(var(--spacing-unit) * 2);
+    margin-bottom: var(--spacing-unit);
+  }
+  
+  /* ────────────────
+     3. ヘッダー・フッター
+  ───────────────── */
+  header, footer {
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  header h1 a {
+    color: var(--brand-primary);
+    font-size: 1.75rem;
+  }
+  
+  /* ────────────────
+     4. ボタン
+  ───────────────── */
+  .btn-primary {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+    font-size: 1rem;
+    transition: filter 0.2s;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+  }
+  
+  /* ────────────────
+     5. カード
+  ───────────────── */
+  .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  
+  /* ────────────────
+     6. フォーム要素（スライダー）
+  ───────────────── */
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    margin: calc(var(--spacing-unit) * 1) 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--brand-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--brand-primary);
+  }
+  
+  /* ────────────────
+     7. レスポンシブユーティリティ
+  ───────────────── */
+  @media (max-width: 768px) {
+    .container {
+      padding-left: calc(var(--spacing-unit) * 2);
+      padding-right: calc(var(--spacing-unit) * 2);
+    }
+  }
+  
