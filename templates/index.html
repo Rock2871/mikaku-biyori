@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="text-center">
-    <p>あなた好みのコーヒー豆を簡単診断！</p>
-    <a href="{{ url_for('diagnosis') }}" class="btn btn-primary">診断を始める</a>
-  </div>
-  <hr>
-  <div class="row">
-    {% for bean in beans %}
-      <div class="col-md-4 mb-3">
-        <div class="card p-3">
-          <h5>{{ bean.name }}</h5>
-          <p>{{ bean.description }}</p>
-        </div>
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container text-center">
+      <h1 class="display-4">味覚日和へようこそ</h1>
+      <p class="lead">あなたの味覚に寄り添う、一杯のコーヒー診断</p>
+      <a href="{{ url_for('diagnosis') }}" class="btn btn-primary btn-lg mt-4">今すぐ診断を始める</a>
+    </div>
+  </section>
+
+  <section class="features container py-5">
+    <div class="row g-4">
+      <div class="col-md-4 text-center feature-item">
+        <i class="fas fa-sliders-h fa-3x mb-3"></i>
+        <h3>スライダーで簡単診断</h3>
+        <p>苦味・酸味など6軸のスライダーを動かすだけ。</p>
       </div>
-    {% endfor %}
-  
-  </div>
+      <div class="col-md-4 text-center feature-item">
+        <i class="fas fa-coffee fa-3x mb-3"></i>
+        <h3>10種から選定</h3>
+        <p>日本で親しまれる代表的なコーヒー豆を厳選。</p>
+      </div>
+      <div class="col-md-4 text-center feature-item">
+        <i class="fas fa-chart-line fa-3x mb-3"></i>
+        <h3>レーダーチャート表示</h3>
+        <p>味覚プロファイルを視覚的に確認できます。</p>
+      </div>
+    </div>
+  </section>
 {% endblock %}
