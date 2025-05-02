@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>診断結果</h2>
+  <div class="card p-4 mb-3">
+    <h3>{{ bean.name }}（{{ bean.origin }}）</h3>
+    <p>マッチ率: {{ bean.score|round(1) }}%</p>
+    <canvas id="radarChart" width="300" height="300"></canvas>
+    <p class="mt-3">{{ bean.description }}</p>
+  </div>
+  <a href="{{ url_for('diagnosis') }}" class="btn btn-outline-primary">もう一度診断</a>
+  <button class="btn btn-outline-info" onclick="shareSNS()">SNS共有</button>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Chart.js でレーダーチャート
+  const ctx = document.getElementById('radarChart');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['苦味','酸味','コク','甘味','香り','後味'],
+      datasets: [{
+        label: '{{ bean.name }}',
+        data: [
+          {{ bean.bitterness }}, {{ bean.acidity }},
+          {{ bean.body }}, {{ bean.sweetness }},
+          {{ bean.aroma }}, {{ bean.aftertaste }}
+        ],
+        fill: true
+      }]
+    },
+    options: { scales: { r: { min: 0, max: 5 } } }
+  });
+
+  function shareSNS() {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=私のコーヒー診断結果は{{ bean.name }}でした！`);
+  }
+</script>
+{% endblock %}

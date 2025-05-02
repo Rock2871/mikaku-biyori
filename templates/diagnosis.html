@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>味覚診断</h2>
+  <form method="post">
+    {% for label, idx in [('苦味',1),('酸味',2),('コク',3),('甘味',4),('香り',5),('後味',6)] %}
+      <div class="mb-3">
+        <label>{{ label }}: <span id="val{{ idx }}">2.5</span></label>
+        <input type="range" name="s{{ idx }}" id="s{{ idx }}" class="form-range" min="0" max="5" step="0.5" value="2.5"
+               oninput="document.getElementById('val{{ idx }}').innerText = this.value">
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">診断スタート</button>
+  </form>
+{% endblock %}
